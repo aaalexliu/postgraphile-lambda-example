@@ -3,6 +3,7 @@
     "webpack": "webpack",
     "phase1": ". ./.env && scripts/build",
     "phase2": ". ./.env && scripts/generate-cache",
+    "phase2-debug": ". ./.env && scripts/generate-cache-test",
     "phase3": ". ./.env && scripts/bundle",
     "phase4": ". ./.env && scripts/test",
     "build": ". ./.env && scripts/build && scripts/generate-cache && scripts/bundle",

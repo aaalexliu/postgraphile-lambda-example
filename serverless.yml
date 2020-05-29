@@ -12,7 +12,7 @@ package:
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   deploymentBucket:
     name: ${env:AWS_SERVICE_NAME}
   region: ${env:AWS_REGION}

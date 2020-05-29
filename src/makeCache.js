@@ -8,9 +8,12 @@ const schemas = process.env.DATABASE_SCHEMAS
   : ['app_public'];
 
 async function main() {
+  console.log('hello')
   const pgPool = new Pool({
     connectionString: process.env.DATABASE_URL,
   });
+  console.log(pgPool);
+  debugger;
   await createPostGraphileSchema(pgPool, schemas, {
     ...options,
     writeCache: `${__dirname}/../dist/postgraphile.cache`,
