@@ -6,3 +6,4 @@
 /lambda.zip
 /.serverless/
 .DS_Store
+/private-commands
