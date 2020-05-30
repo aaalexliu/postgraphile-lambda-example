@@ -2,6 +2,9 @@
 const { createPostGraphileSchema } = require('postgraphile');
 const { options } = require('./postgraphileOptions');
 const { Pool } = require('pg');
+const { resolve } = require("path");
+require('dotenv').config();
+
 
 const schemas = process.env.DATABASE_SCHEMAS
   ? process.env.DATABASE_SCHEMAS.split(',')
@@ -12,12 +15,20 @@ async function main() {
   const pgPool = new Pool({
     connectionString: process.env.DATABASE_URL,
   });
-  console.log(pgPool);
+  // console.log(pgPool);
+
+  console.log(`${__dirname}/../dist/postgraphile.cache`);
+  const writeTo = resolve(__dirname,'../dist/postgraphile.cache');
+  console.log(writeTo);
+  console.log(schemas);
+  console.log(process.env.DATABASE_URL);
   debugger;
   await createPostGraphileSchema(pgPool, schemas, {
     ...options,
-    writeCache: `${__dirname}/../dist/postgraphile.cache`,
+    writeCache: writeTo,
   });
+  console.log('yoo');
+  debugger;
   await pgPool.end();
 }
 
