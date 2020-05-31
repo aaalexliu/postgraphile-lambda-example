@@ -2,6 +2,7 @@ service: ${env:AWS_SERVICE_NAME}
 
 plugins:
   - serverless-content-encoding
+  - serverless-sam
 
 custom:
   contentEncoding:

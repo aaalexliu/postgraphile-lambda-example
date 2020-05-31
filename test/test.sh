@@ -1,7 +1,8 @@
 set -e
 
 echo "Making template.yml"
-./make-template-yml.sh
+# ./make-template-yml.sh
+# . ../.env && serverless sam export --output ./template.yml
 unset DATABASE_URL
 
 echo "Spinning up SAM... (waiting a few seconds)"

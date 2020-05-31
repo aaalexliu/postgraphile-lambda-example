@@ -21,6 +21,7 @@
   "devDependencies": {
     "aws-sdk": "^2.686.0",
     "serverless-content-encoding": "^1.1.0",
+    "serverless-sam": "^0.2.0",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11"
   },
