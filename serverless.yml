@@ -32,3 +32,12 @@ functions:
       DATABASE_SCHEMAS: ${env:DATABASE_SCHEMAS}
       JWT_SECRET: ${env:JWT_SECRET}
       JWT_PG_TYPE_IDENTIFIER: ${env:JWT_PG_TYPE_IDENTIFIER}
+    vpc:
+      securityGroupIds:
+        "Fn::Split":
+          - ","
+          - ${env:AWS_VPC_SECURITY_GROUP_IDS}
+      subnetIds:
+        "Fn::Split":
+          - ","
+          - ${env:AWS_VPC_SUBNET_IDS}
