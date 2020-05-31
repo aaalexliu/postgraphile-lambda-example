@@ -33,17 +33,21 @@ const app = combineMiddlewares([
     }
     next();
   },
+  console.log(schemas),
   postgraphile(process.env.DATABASE_URL, schemas, {
     ...options,
     readCache: `${__dirname}/postgraphile.cache`,
   }),
 ]);
 
+console.log(app);
+console.log('burh');
 const handler = (req, res) => {
   app(req, res, err => {
     if (err) {
       // eslint-disable-next-line no-console
       console.error(err);
+      console.log('fail');
       if (!res.headersSent) {
         res.statusCode = err.status || err.statusCode || 500;
         res.setHeader('Content-Type', 'application/json');
@@ -61,5 +65,7 @@ const handler = (req, res) => {
 };
 
 const binaryMimeTypes = options.graphiql ? ['image/x-icon'] : undefined;
+console.log('yo1');
 const server = awsServerlessExpress.createServer(handler, undefined, binaryMimeTypes);
+console.log('yo2');
 exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context);
