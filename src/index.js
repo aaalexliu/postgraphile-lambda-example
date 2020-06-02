@@ -4,6 +4,9 @@ const { options } = require('./postgraphileOptions');
 const combineMiddlewares = require('./combineMiddlewares');
 const cors = require('cors');
 
+// require so that webpack packages cache file
+// const postgraphileCache = require('./postgraphile.cache');
+
 const schemas = process.env.DATABASE_SCHEMAS
   ? process.env.DATABASE_SCHEMAS.split(',')
   : ['app_public'];
@@ -33,14 +36,14 @@ const app = combineMiddlewares([
     }
     next();
   },
-  console.log(schemas),
+  // console.log(schemas),
   postgraphile(process.env.DATABASE_URL, schemas, {
     ...options,
     readCache: `${__dirname}/postgraphile.cache`,
   }),
 ]);
 
-console.log(app);
+// console.log(app);
 console.log('burh');
 const handler = (req, res) => {
   app(req, res, err => {

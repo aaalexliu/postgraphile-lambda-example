@@ -19,8 +19,8 @@ async function main() {
 
   console.log(`${__dirname}/../dist/postgraphile.cache`);
   const writeTo = resolve(__dirname,'../dist/postgraphile.cache');
-  console.log(writeTo);
-  console.log(schemas);
+  console.log(writeTo); 
+  // console.log(schemas);
   console.log(process.env.DATABASE_URL);
   debugger;
   await createPostGraphileSchema(pgPool, schemas, {

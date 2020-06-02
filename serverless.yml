@@ -1,8 +1,14 @@
 service: ${env:AWS_SERVICE_NAME}
 
+app: postgraphile-lambda-test
+org: alexliusq
+
+
 plugins:
   - serverless-content-encoding
   - serverless-sam
+  - serverless-dotenv-plugin
+  - serverless-bundle
 
 custom:
   contentEncoding:
@@ -10,6 +16,7 @@ custom:
 
 package:
   individually: true
+  include: src/postgraphile.cache
 
 provider:
   name: aws
@@ -21,7 +28,7 @@ provider:
 
 functions:
   graphql:
-    handler: index.handler # Actual handler substituted in during deploy script
+    handler: src/index.handler # Actual handler substituted in during deploy script
     events:
       - http:
           method: post
