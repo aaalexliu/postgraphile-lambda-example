@@ -3,32 +3,33 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const { options: postgraphileOptions } = require('./src/postgraphileOptions.js');
 
+console.log("i'm loaded");
 module.exports = {
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
-    library: '',
-    libraryTarget: 'commonjs',
-  },
+  // output: {
+  //   path: path.resolve(__dirname, 'dist'),
+  //   filename: 'index.js',
+  //   library: '',
+  //   libraryTarget: 'commonjs',
+  // },
   mode: 'production',
   target: 'node',
   plugins: [
     // Prevent loading pg-native (in a weird, backwards kind of way!)
 
     // pg-native resolving is throwing errors
-    // ...[
-    //   new webpack.DefinePlugin({
-    //     'process.env.NODE_ENV': '"production"',
-    //     'process.env.POSTGRAPHILE_ENV': '"production"',
-    //     'process.env.NODE_PG_FORCE_NATIVE': JSON.stringify('1'),
-    //     ...(postgraphileOptions.graphiql
-    //       ? null
-    //       : {
-    //           'process.env.POSTGRAPHILE_OMIT_ASSETS': '"1"',
-    //         }),
-    //   }),
-    //   new webpack.NormalModuleReplacementPlugin(/pg\/lib\/native\/index\.js$/, '../client.js'),
-    // ],
+    ...[
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': '"production"',
+        'process.env.POSTGRAPHILE_ENV': '"production"',
+        'process.env.NODE_PG_FORCE_NATIVE': JSON.stringify('1'),
+        ...(postgraphileOptions.graphiql
+          ? null
+          : {
+              'process.env.POSTGRAPHILE_OMIT_ASSETS': '"1"',
+            }),
+      }),
+      new webpack.NormalModuleReplacementPlugin(/pg\/lib\/native\/index\.js$/, '../client.js'),
+    ],
     
     // Omit websocket functionality from postgraphile:
     new webpack.NormalModuleReplacementPlugin(

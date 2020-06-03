@@ -13,6 +13,12 @@ plugins:
 custom:
   contentEncoding:
     minimumCompressionSize: 0
+  bundle:
+    ignorePackages:
+      - pg-native
+    linting: true
+  # webpack:
+  #     webpackConfig: 'webpack.config.js'
 
 package:
   individually: true

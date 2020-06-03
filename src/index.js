@@ -17,7 +17,7 @@ const app = combineMiddlewares([
    *
    * This is typically useful for augmenting the request before it goes to PostGraphile.
    */
- 
+
   // CORS middleware to permit cross-site API requests. Configure to taste
   cors(),
 
