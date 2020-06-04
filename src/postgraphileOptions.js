@@ -29,7 +29,7 @@ exports.options = {
   showErrorStack: "json",
   extendedErrors: ["hint", "detail", "errcode"],
   appendPlugins: [require("@graphile-contrib/pg-simplify-inflector")],
-  exportGqlSchemaPath: "schema.graphql",
+  // exportGqlSchemaPath: "../tmp/schema.graphql",
   graphiql: true,
   enhanceGraphiql: true,
   allowExplain(req) {
@@ -38,4 +38,5 @@ exports.options = {
   },
   enableQueryBatching: true,
   legacyRelations: "omit",
+  // writeCache: '../tmp/',
 };

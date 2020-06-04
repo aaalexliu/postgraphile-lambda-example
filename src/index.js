@@ -36,9 +36,10 @@ const app = combineMiddlewares([
     }
     next();
   },
-  (req, res, next) => {
-    console.log(req);
-  },
+  // (req, res, next) => {
+  //   console.log(req);
+  // },
+  
   // console.log(schemas),
   postgraphile(process.env.DATABASE_URL, schemas, {
     ...options,
