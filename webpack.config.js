@@ -1,7 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-const { options: postgraphileOptions } = require('./src/postgraphileOptions.js');
+const { options: postgraphileOptions } = require('./src/postgraphileOptions.js');const CopyPlugin = require('copy-webpack-plugin');
+// const CopyPlugin = require('copy-webpack-plugin');
+
 
 console.log("i'm loaded");
 module.exports = {
@@ -42,6 +44,15 @@ module.exports = {
       /express\/lib\/view\.js$/,
       `${__dirname}/src/express-lib-view.js`
     ),
+
+    new CopyPlugin({
+      patterns: [
+        { from: 'dist/postgraphile.cache', to: 'src/'},
+      ],
+      options: {
+        concurrency: 100,
+      },
+    }),
   ],
   node: {
     __dirname: false, // just output `__dirname`
@@ -57,6 +68,11 @@ module.exports = {
       }),
     ],
   },
+
+  // buffer util, utf validate errors
+  // https://github.com/websockets/ws/issues/1220
+  externals: ['bufferutil', 'utf-8-validate'],
+
   // rules: [
   //   {
   //     test: /\.cache$/,

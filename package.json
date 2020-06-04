@@ -12,15 +12,16 @@
     "deploy": "scripts/serverless"
   },
   "dependencies": {
-    "aws-serverless-express": "^3.3.8",
+    "aws-serverless-express": "^3.3.5",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
     "pg": "^8.2.1",
-    "postgraphile": "^4.7.0",
-    "ws": "^7.3.0"
+    "postgraphile": "^4.4.0-beta.9",
+    "postgraphile-plugin-connection-filter": "^2.0.0"
   },
   "devDependencies": {
-    "aws-sdk": "^2.686.0",
+    "@graphile-contrib/pg-simplify-inflector": "^6.0.0",
+    "aws-sdk": "^2.689.0",
+    "copy-webpack-plugin": "^6.0.2",
     "file-loader": "^6.0.0",
     "serverless-bundle": "^1.7.0",
     "serverless-content-encoding": "^1.1.0",

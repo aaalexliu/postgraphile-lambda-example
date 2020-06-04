@@ -7,3 +7,4 @@
 /.serverless/
 .DS_Store
 /private-commands
+.webpack/

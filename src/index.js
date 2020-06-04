@@ -36,6 +36,9 @@ const app = combineMiddlewares([
     }
     next();
   },
+  (req, res, next) => {
+    console.log(req);
+  },
   // console.log(schemas),
   postgraphile(process.env.DATABASE_URL, schemas, {
     ...options,
@@ -46,7 +49,9 @@ const app = combineMiddlewares([
 // console.log(app);
 console.log('burh');
 const handler = (req, res) => {
+  console.log('hello');
   app(req, res, err => {
+    console.log('bruh2');
     if (err) {
       // eslint-disable-next-line no-console
       console.error(err);

@@ -8,28 +8,31 @@ plugins:
   - serverless-content-encoding
   - serverless-sam
   - serverless-dotenv-plugin
-  - serverless-bundle
+  - serverless-webpack
 
 custom:
   contentEncoding:
     minimumCompressionSize: 0
-  bundle:
-    ignorePackages:
-      - pg-native
-    linting: true
-  # webpack:
-  #     webpackConfig: 'webpack.config.js'
+  # bundle:
+  #   ignorePackages:
+  #     - pg-native
+  #   linting: true
+  #   packager: yarn
+  webpack:
+      webpackConfig: 'webpack.config.js'
+      packager: 'yarn'
+      keepOutputDirectory: true
 
 package:
   individually: true
-  include: src/postgraphile.cache
+  # include: src/postgraphile.cache
 
 provider:
   name: aws
   runtime: nodejs12.x
   deploymentBucket:
     name: ${env:AWS_SERVICE_NAME}
-  region: ${env:AWS_REGION}
+  region: ${env:AWS_REGION_CUSTOM}
   stage: ${env:AWS_STAGE}
 
 functions:
@@ -55,3 +58,11 @@ functions:
         "Fn::Split":
           - ","
           - ${env:AWS_VPC_SUBNET_IDS}
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "ec2:CreateNetworkInterface"
+          - "ec2:DescribeNetworkInterfaces"
+          - "ec2:DetachNetworkInterface"
+          - "ec2:DeleteNetworkInterface"
+        Resource: "*"
