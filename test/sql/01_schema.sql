@@ -229,5 +229,6 @@ create policy update_post on forum_example.post for update to forum_example_pers
 create policy delete_post on forum_example.post for delete to forum_example_person
   using (author_id = current_setting('jwt.claims.person_id')::integer);
 
+CREATE INDEX ON "forum_example"."post"("author_id"); 
 
 commit;
