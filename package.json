@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@graphile-contrib/pg-simplify-inflector": "^6.0.0",
-    "aws-sdk": "^2.689.0",
+    "aws-sdk": "^2.814.0",
     "copy-webpack-plugin": "^6.0.2",
     "file-loader": "^6.0.0",
     "serverless-bundle": "^1.7.0",
